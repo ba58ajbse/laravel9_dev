@@ -8,7 +8,8 @@
         "prod": "mix --production",
         "lint": "eslint --fix resources/ts/**/*.{ts,tsx}",
         "fmt": "prettier --write resources/ts/**/*.{ts,tsx}",
-        "stylelint": "stylelint --fix resources/**/*.css"
+        "stylelint": "stylelint --fix resources/**/*.css",
+        "test": "jest"
     },
     "devDependencies": {
         "@types/jest": "^28.1.1",

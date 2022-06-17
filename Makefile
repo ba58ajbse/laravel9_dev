@@ -36,3 +36,6 @@ fmt:
 
 stylelint:
 	docker-compose exec app npm run stylelint
+
+jest:
+	docker-compose exec app npm run test
