@@ -27,3 +27,12 @@ phpunit:
 
 phpstan:
 	docker-compose exec app ./vendor/bin/phpstan analyse
+
+lint:
+	docker-compose exec app npm run lint
+
+fmt:
+	docker-compose exec app npm run fmt
+
+stylelint:
+	docker-compose exec app npm run stylelint
