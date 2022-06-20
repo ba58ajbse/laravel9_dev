@@ -5,10 +5,14 @@ ARG NODE_VERSION=16
 COPY ./php.ini /usr/local/etc/php/
 COPY ./000-default.conf /etc/apache2/sites-enabled/
 
-RUN apt-get update \
-    && apt-get install -y \
-    curl git zip unzip --no-install-recommends \
+RUN apt-get update
+RUN apt-get install -y --no-install-recommends \
+    curl \
+    git \
+    zip \
+    unzip \
     && docker-php-ext-install pdo_mysql
+RUN pecl install xdebug && docker-php-ext-enable xdebug
 
 COPY --from=composer:2.2.4 /usr/bin/composer /usr/local/bin/composer
 
@@ -21,5 +25,3 @@ RUN apt-get install -y nodejs \
 
 RUN mv /etc/apache2/mods-available/rewrite.load /etc/apache2/mods-enabled
 RUN /bin/sh -c a2enmod rewrite
-
-# EXPOSE 80
