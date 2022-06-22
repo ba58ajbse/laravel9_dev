@@ -4,6 +4,9 @@ services:
         build:
             context: ./docker/php_apache
             dockerfile: Dockerfile
+            args:
+                - GID=${GID}
+                - UID=${UID}
         ports:
             - 80:80
         volumes:

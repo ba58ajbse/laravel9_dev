@@ -1,6 +1,8 @@
 FROM php:8.1-apache
 
 ARG NODE_VERSION=16
+ARG GID
+ARG UID
 
 COPY ./php.ini /usr/local/etc/php/
 COPY ./000-default.conf /etc/apache2/sites-enabled/
@@ -25,3 +27,8 @@ RUN apt-get install -y nodejs \
 
 RUN mv /etc/apache2/mods-available/rewrite.load /etc/apache2/mods-enabled
 RUN /bin/sh -c a2enmod rewrite
+
+RUN groupadd -g ${GID} dev
+RUN useradd -ms /bin/bash --no-user-group -g ${GID} -u ${UID} dev
+
+USER $UID
